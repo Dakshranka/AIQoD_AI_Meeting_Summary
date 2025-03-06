@@ -1,0 +1,5 @@
+If you don't have a board, you can simply just go and click and create, create a new board.
+As you can see, this is the simplest for tier list, that's I'm using here for this board.
+And you can of course, it is just however you want, once it starts with the template.
+Once you are in your board, we'll need to look at the URL, that's your browser address bar.
+Here, as you can see, the board ID is the long string of characters followed by slash the board.
