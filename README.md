@@ -1,6 +1,6 @@
-#🎧 AI-Powered Meeting Summary & Task Manager
+# 🎧 AI-Powered Meeting Summary & Task Manager
 
-#🚀 Overview
+## 🚀 Overview
 
 AI-Powered Meeting Summary & Task Manager is a real-time and recorded meeting assistant that:
 
@@ -14,51 +14,54 @@ AI-Powered Meeting Summary & Task Manager is a real-time and recorded meeting as
 
 ✅ Assigns tasks to Trello for better productivity
 
-#📌 Features
+## 📌 Features
 
-🔹 Live & Recorded Meeting Support – Works with both uploaded audio and live meetings
+🔹 **Live & Recorded Meeting Support** – Works with both uploaded audio and live meetings
 
-🔹 Automatic Transcription – Uses Whisper AI to convert speech to text
+🔹 **Automatic Transcription** – Uses Whisper AI to convert speech to text
 
-🔹 Smart Summarization – Generates concise summaries using NLP
+🔹 **Smart Summarization** – Generates concise summaries using NLP
 
-🔹 Action Item Extraction – Identifies key takeaways & decisions
+🔹 **Action Item Extraction** – Identifies key takeaways & decisions
 
-🔹 Trello Integration – Automatically creates tasks from action items
+🔹 **Trello Integration** – Automatically creates tasks from action items
 
-#🛠 Installation
+## 🛠 Installation
 
-⸿ Clone the Repository
-
+### Clone the Repository
+```sh
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
+```
 
-⸿ Create a Virtual Environment
-
+### Create a Virtual Environment
+```sh
 python -m venv venv
 source venv/bin/activate  # macOS/Linux
 venv\Scripts\activate     # Windows
+```
 
-⸿ Install Dependencies
-
+### Install Dependencies
+```sh
 pip install -r requirements.txt
+```
 
-⸿ Setup Trello API (For Task Assignment)
-
-Create a config.py file in the project root:
-
+### Setup Trello API (For Task Assignment)
+Create a `config.py` file in the project root:
+```python
 TRELLO_API_KEY = "your-trello-api-key"
 TRELLO_TOKEN = "your-trello-token"
 TRELLO_LIST_ID = "your-trello-list-id"
+```
+🛑 **Important:** Add `config.py` to `.gitignore` to prevent exposing credentials.
 
-🛑 Important: Add config.py to .gitignore to prevent exposing credentials.
-
-⸿ Run the Streamlit App
-
+### Run the Streamlit App
+```sh
 streamlit run app.py
+```
 
-#📂 Project Structure
-
+## 📂 Project Structure
+```bash
 📁 Ai-meeting-summary/
 │── 📁 backend/              # Core backend logic
 │   ├── transcriber.py       # Transcription using Whisper AI
@@ -78,54 +81,56 @@ streamlit run app.py
 │── requirements.txt          # Required dependencies
 │── .gitignore                # Files to ignore in Git
 │── README.md                 # Project documentation
+```
 
-#🎯 Usage
+## 🎯 Usage
 
-⸿ Upload a recorded meeting or start live recording
+⸿ **Upload a recorded meeting or start live recording**
 
-⸿ Wait for transcription & summarization
+⸿ **Wait for transcription & summarization**
 
-⸿ Review extracted action items
+⸿ **Review extracted action items**
 
-⸿ Assign tasks to Trello with one click
+⸿ **Assign tasks to Trello with one click**
 
-#🤖 Technologies Used
+## 🤖 Technologies Used
 
-🕽 Whisper AI – Transcription
+🕽 **Whisper AI** – Transcription
 
-📝 SpaCy / NLP – Summarization
+📝 **SpaCy / NLP** – Summarization
 
-✅ Trello API – Task automation
+✅ **Trello API** – Task automation
 
-🎥 SoundDevice – Live meeting recording
+🎥 **SoundDevice** – Live meeting recording
 
-🖥 Streamlit – Frontend
+🖥 **Streamlit** – Frontend
 
-🛠 Future Enhancements
+## 🛠 Future Enhancements
 
-✅ Speaker Identification
+✅ **Speaker Identification**
 
-✅ Multiple Language Support
+✅ **Multiple Language Support**
 
-✅ Slack Integration for Notifications
+✅ **Slack Integration for Notifications**
 
-✅ Email Reminders for Action Items
+✅ **Email Reminders for Action Items**
 
-#💜 License
+## 💜 License
 
 MIT License. Free to use & modify! 🚀
 
-#⭐ Contribute
+## ⭐ Contribute
 
 Want to improve this project? Fork it & submit a PR! 💡
 
-#📌 Next Steps
+## 📌 Next Steps
 
-⸿ Copy & Paste the above content into a README.md file
+⸿ **Copy & Paste the above content into a `README.md` file**
 
-⸿ Commit & Push to GitHub:
-
+⸿ **Commit & Push to GitHub:**
+```sh
 git add README.md
 git commit -m "Added project README"
 git push origin main
+```
 
