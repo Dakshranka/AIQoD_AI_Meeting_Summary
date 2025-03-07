@@ -136,9 +136,7 @@ streamlit run app.py
 
 MIT License. Free to use & modify! 🚀
 
-## ⭐ Contribute
 
-Want to improve this project? Fork it & submit a PR! 💡
 
 
 
