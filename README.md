@@ -4,6 +4,8 @@
 
 AI-Powered Meeting Summary & Task Manager is a real-time and recorded meeting assistant that:
 
+![WhatsApp Image 2025-03-07 at 09 48 47_84fecca1](https://github.com/user-attachments/assets/b3851ea0-d97f-46f7-b529-a20a52ec44fd)
+
 ✅ Records live meetings 
 
 ✅ Transcribes speech into text using Whisper AI
