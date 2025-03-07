@@ -4,17 +4,28 @@
 
 AI-Powered Meeting Summary & Task Manager is a real-time and recorded meeting assistant that:
 
-![WhatsApp Image 2025-03-07 at 09 48 47_84fecca1](https://github.com/user-attachments/assets/b3851ea0-d97f-46f7-b529-a20a52ec44fd)
+![WhatsApp Image 2025-03-07 at 09 48 47_84fecca1](https://github.com/user-attachments/assets/b3851ea0-d97f-46f7-b529-a20a52ec44fd=250x250)
 
 ✅ Records live meetings 
+![WhatsApp Image 2025-03-07 at 09 53 32_a0e76f99](https://github.com/user-attachments/assets/a479ea17-373c-4067-8f26-461f715f8fa4=250x250)
+
 
 ✅ Transcribes speech into text using Whisper AI
+![WhatsApp Image 2025-03-07 at 09 48 47_e912dee0](https://github.com/user-attachments/assets/ea8647b4-15a5-419c-b91f-9b2dad5b75e7=250x250)
+
 
 ✅ Summarizes key points using NLP
+![WhatsApp Image 2025-03-07 at 09 50 16_bbe6c7af](https://github.com/user-attachments/assets/d332b43a-427c-43a1-b693-476cb6f3bf1e=250x250)
+
 
 ✅ Extracts action items automatically
+![WhatsApp Image 2025-03-07 at 09 49 49_4975a29c](https://github.com/user-attachments/assets/b240bfd5-6aa8-43d4-bc19-7f727406e8f5=250x250)
 
 ✅ Assigns tasks to Trello for better productivity
+![{9A290013-4315-4430-83E0-116A760C47FB}](https://github.com/user-attachments/assets/34cb8fcb-1a77-4cbd-8fb3-f6a23f2c8c3a=250x250)
+
+![WhatsApp Image 2025-03-07 at 09 51 18_8dd8a6b7](https://github.com/user-attachments/assets/13ceca4e-a150-4c1d-931b-903f1494f9c0=250x250)
+
 
 ## 📌 Features
 
