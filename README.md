@@ -4,15 +4,32 @@
 
 AI-Powered Meeting Summary & Task Manager is a real-time and recorded meeting assistant that:
 
+<img src="https://github.com/user-attachments/assets/b3851ea0-d97f-46f7-b529-a20a52ec44fd" width="500" height="300">
+
 ✅ Records live meetings 
+
+![WhatsApp Image 2025-03-07 at 09 53 32_a0e76f99](https://github.com/user-attachments/assets/a479ea17-373c-4067-8f26-461f715f8fa4)
+
 
 ✅ Transcribes speech into text using Whisper AI
 
+<img src="https://github.com/user-attachments/assets/ea8647b4-15a5-419c-b91f-9b2dad5b75e7" width="500" height="300">
+
 ✅ Summarizes key points using NLP
+
+<img src="https://github.com/user-attachments/assets/d332b43a-427c-43a1-b693-476cb6f3bf1e" width="500" height="300">
+
 
 ✅ Extracts action items automatically
 
+<img src="https://github.com/user-attachments/assets/b240bfd5-6aa8-43d4-bc19-7f727406e8f5" width="500" height="300">
+
 ✅ Assigns tasks to Trello for better productivity
+
+<img src="https://github.com/user-attachments/assets/34cb8fcb-1a77-4cbd-8fb3-f6a23f2c8c3a" width="500" height="300">
+
+<img src="https://github.com/user-attachments/assets/13ceca4e-a150-4c1d-931b-903f1494f9c0" width="500" height="300">
+
 
 ## 📌 Features
 
