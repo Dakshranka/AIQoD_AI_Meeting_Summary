@@ -119,19 +119,7 @@ streamlit run app.py
 
 MIT License. Free to use & modify! 🚀
 
-## ⭐ Contribute
 
-Want to improve this project? Fork it & submit a PR! 💡
 
-## 📌 Next Steps
-
-⸿ **Copy & Paste the above content into a `README.md` file**
-
-⸿ **Commit & Push to GitHub:**
-```sh
-git add README.md
-git commit -m "Added project README"
-git push origin main
-```
 
 
