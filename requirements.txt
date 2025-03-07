@@ -1,0 +1,25 @@
+# Core Dependencies
+streamlit
+numpy
+pandas
+requests
+psutil
+pyautogui
+pygetwindow
+
+# Audio Processing
+sounddevice
+wave
+whisper
+
+# NLP & Summarization
+spacy
+transformers
+torch
+sentence-transformers
+
+# Task Management
+trello
+
+# UI Enhancements
+opencv-python
