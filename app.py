@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import time
+from fpdf import FPDF
 from backend.transcriber import transcribe_audio
 from backend.sumarrizer import summarize_transcript
 from backend.action_item_extractor import extract_action_items
@@ -10,26 +11,6 @@ from backend.live_transcriber import transcribe_live_audio
 from backend.live_summarizer import summarize_live_transcript
 from backend.live_action_extractor import extract_action_items_from_summary
 from backend.live_assign_tasks import assign_tasks_from_live_summary  
-
-# Custom CSS for UI enhancements
-st.markdown("""
-    <style>
-        .main {
-            background-color: #f8f9fa;
-        }
-        div.stButton > button {
-            width: 100%;
-            border-radius: 10px;
-            font-size: 16px;
-        }
-        div.stTextArea > textarea {
-            font-size: 14px;
-        }
-        .block-container {
-            padding-top: 1rem;
-        }
-    </style>
-""", unsafe_allow_html=True)
 
 # 📂 Define Directories
 DIRECTORIES = {
@@ -44,30 +25,28 @@ DIRECTORIES = {
 for directory in DIRECTORIES.values():
     os.makedirs(directory, exist_ok=True)
 
-st.title("🎙 AI-Powered Meeting Assistant")
+st.title("🎙 AI-Powered Meeting Assistant & Task Manager")
 
 # 📂 File Upload for Recorded Meetings
-with st.sidebar:
-    st.subheader("📂 Upload Meeting Recording")
-    uploaded_file = st.file_uploader("Upload (.wav or .mp3)", type=["wav", "mp3"])
+uploaded_file = st.file_uploader("📂 Upload a recorded meeting (.wav or .mp3)", type=["wav", "mp3"])
 
 # 🎥 Live Meeting Detection
-st.subheader("🎥 Live Meeting Recorder")
+st.subheader("🎥 Live Meeting Recording")
 live_meeting_detected = is_meeting_active()
 
-col1, col2 = st.columns(2)
-with col1:
-    if st.button("🔍 Detect & Start Live Recording"):
-        if live_meeting_detected:
-            st.success("✅ Live meeting detected! Recording in progress...")
-            file_path = record_meeting_audio(os.path.join(DIRECTORIES["live_recordings"], "live_meeting.wav"))
-        else:
-            st.warning("⚠ No live meeting detected.")
-            file_path = None
+if st.button("🔍 Detect & Start Recording Live Meeting"):
+    if live_meeting_detected:
+        st.success("✅ Live meeting detected! Recording in progress...")
+        file_path = record_meeting_audio(os.path.join(DIRECTORIES["live_recordings"], "live_meeting.wav"))
+        if not file_path:
+            st.error("⚠ Recording failed. Ensure system audio is available.")
     else:
+        st.warning("⚠ No live meeting detected.")
         file_path = None
+else:
+    file_path = None
 
-# 🎯 Process Uploaded or Live Recording
+# 🎯 Determine whether to process uploaded or live recording
 if uploaded_file:
     file_path = os.path.join(DIRECTORIES["uploads"], uploaded_file.name)
     with open(file_path, "wb") as f:
@@ -75,35 +54,111 @@ if uploaded_file:
     st.success(f"✅ Uploaded {uploaded_file.name} successfully!")
 
 if file_path:
-    tab1, tab2, tab3, tab4 = st.tabs(["📜 Transcription", "📌 Summary", "✅ Action Items", "📤 Assign Tasks"])
-
     # 📜 Transcription
-    with tab1:
-        with st.spinner("Transcribing audio..."):
-            transcript_text = transcribe_audio(file_path) if uploaded_file else transcribe_live_audio(file_path)
-            time.sleep(2)
-        st.text_area("Transcript", transcript_text, height=300)
+    st.subheader("📜 Transcription")
+    with st.spinner("Transcribing audio..."):
+        transcript_text = (
+            transcribe_audio(file_path) if uploaded_file else transcribe_live_audio(file_path)
+        )
+        time.sleep(2)  # Simulate processing delay
+    
+    transcript_file = os.path.join(
+        DIRECTORIES["transcripts"],
+        os.path.basename(file_path).replace(".wav", ".txt").replace(".mp3", ".txt"),
+    )
+    with open(transcript_file, "w", encoding="utf-8") as f:
+        f.write(transcript_text)
+
+    st.text_area("Transcript", transcript_text, height=300)
 
     # 📌 Summarization
-    with tab2:
-        with st.spinner("Summarizing transcript..."):
-            summary_text = summarize_transcript(file_path) if uploaded_file else summarize_live_transcript(file_path)
-            time.sleep(2)
-        st.text_area("Summary", summary_text, height=200)
+    st.subheader("📌 Summarization")
+    with st.spinner("Summarizing transcript..."):
+        summary_text = (
+            summarize_transcript(transcript_file)
+            if uploaded_file
+            else summarize_live_transcript(transcript_file)
+        )
+        time.sleep(2)
+
+    summary_file = os.path.join(
+        DIRECTORIES["summaries"],
+        os.path.basename(file_path).replace(".wav", "_summary.txt").replace(".mp3", "_summary.txt"),
+    )
+    with open(summary_file, "w", encoding="utf-8") as f:
+        f.write(summary_text)
+
+    # Allow user to edit summary before saving
+    edited_summary = st.text_area("Edit Summary", summary_text, height=200)
+
+    st.text_area("Summary", summary_text, height=200)
 
     # ✅ Extract Action Items
-    with tab3:
-        with st.spinner("Extracting action items..."):
-            action_items_text = extract_action_items(file_path) if uploaded_file else extract_action_items_from_summary(file_path)
-            time.sleep(2)
-        st.text_area("Action Items", action_items_text, height=150)
+    st.subheader("✅ Action Items & Decisions")
+    with st.spinner("Extracting action items..."):
+        action_items_text = (
+            extract_action_items(summary_file)
+            if uploaded_file
+            else extract_action_items_from_summary(summary_file)
+        )
+        time.sleep(2)
 
-    # 📤 Assign Tasks to Trello
-    with tab4:
-        if st.button("📤 Assign Tasks to Trello"):
-            with st.spinner("Assigning tasks..."):
-                assign_tasks_from_summary() if uploaded_file else assign_tasks_from_live_summary()
-            st.success("✅ Tasks successfully assigned!")
+    action_items_file = os.path.join(
+        DIRECTORIES["action_items"],
+        os.path.basename(file_path).replace(".wav", "_actions.txt").replace(".mp3", "_actions.txt"),
+    )
+    with open(action_items_file, "w", encoding="utf-8") as f:
+        f.write(action_items_text)
+
+    # Display action items as bullet points
+    st.markdown("### Action Items")
+    action_items_list = action_items_text.split('\n')
+    for action in action_items_list:
+        if action.strip():
+            st.markdown(f"• {action.strip()}")
+
+    # 📌 Assign Tasks to Trello
+    st.subheader("📌 Assign Tasks to Trello")
+    if st.button("📤 Assign Tasks"):
+        with st.spinner("Assigning tasks to Trello..."):
+            if uploaded_file:
+                assign_tasks_from_summary()
+            else:
+                assign_tasks_from_live_summary()
+        st.success("✅ Tasks successfully assigned to Trello!")
+
+    # PDF Download Option
+    if st.button("📥 Download PDF"):
+        pdf = FPDF()
+        pdf.set_auto_page_break(auto=True, margin=15)
+        pdf.add_page()
+
+        # Title
+        pdf.set_font("Arial", size=16, style="B")
+        pdf.cell(200, 10, txt="Meeting Transcript", ln=True, align="C")
+        pdf.ln(10)
+
+        # Transcript
+        pdf.set_font("Arial", size=12)
+        pdf.multi_cell(0, 10, txt="Transcript:\n" + transcript_text)
+        pdf.ln(10)
+
+        # Summary
+        pdf.set_font("Arial", size=12)
+        pdf.multi_cell(0, 10, txt="Summary:\n" + edited_summary)
+        pdf.ln(10)
+
+        # Action Items
+        pdf.set_font("Arial", size=12)
+        pdf.multi_cell(0, 10, txt="Action Items:\n" + "\n".join(action_items_list))
+        
+        pdf_output = os.path.join(DIRECTORIES["summaries"], f"{os.path.basename(file_path).replace('.wav', '').replace('.mp3', '')}_summary.pdf")
+        pdf.output(pdf_output)
+        
+        st.success("✅ PDF Generated!")
+        st.download_button(label="Download PDF", data=open(pdf_output, "rb"), file_name=os.path.basename(pdf_output))
+
+    st.success("✅ Processing complete! View results above.")
 
 else:
     st.warning("⚠ No file uploaded or live meeting detected.")
