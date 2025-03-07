@@ -105,16 +105,6 @@ streamlit run app.py
 
 🖥 **Streamlit** – Frontend
 
-## 🛠 Future Enhancements
-
-✅ **Speaker Identification**
-
-✅ **Multiple Language Support**
-
-✅ **Slack Integration for Notifications**
-
-✅ **Email Reminders for Action Items**
-
 ## 💜 License
 
 MIT License. Free to use & modify! 🚀
